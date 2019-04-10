@@ -1,0 +1,19 @@
+---
+- name: Install Docker
+  hosts: all
+  roles:
+    # Uncomment for docker & docker-compose installation
+    # - geerlingguy.docker
+
+
+- name: Deploy Composes
+  hosts: all
+  vars:
+    composes_dir: /tmp/composes
+    composes:
+    - repo: https://github.com/ondrejsika/docker-compose-app--example
+      name: demo-app
+      rev: master  # You can try branches: new-branch, hello-branch
+      compose_chain: docker-compose.yml
+  roles:
+    - compose

@@ -1,0 +1,7 @@
+*.retry
+
+vault-password
+
+.vscode
+.idea
+.*.swp

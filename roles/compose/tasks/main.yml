@@ -1,0 +1,11 @@
+---
+- name: Update Git Repos
+  git:
+    repo: '{{ item.repo }}'
+    dest: '{{ composes_dir }}/{{item.name}}'
+    version: '{{ item.rev }}'
+  with_items: "{{ composes }}"
+
+- name: Ensure docker-compose up
+  shell: 'cd {{composes_dir}}/{{ item.name }} && docker-compose build && COMPOSE_FILE={{item.compose_chain}} docker-compose up -d' 
+  with_items: "{{ composes }}"
