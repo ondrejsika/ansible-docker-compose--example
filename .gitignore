@@ -5,3 +5,12 @@ vault-password
 .vscode
 .idea
 .*.swp
+
+.DS_Store
+.terraform
+terraform.tfvars
+*.tfplan
+*.tfstate
+*.tfstate*backup
+*.log
+.terraform.tfstate.lock.info
