@@ -17,11 +17,11 @@
           - docker
           - docker-compose
 
-- hosts: all
-  roles:
-    - geerlingguy.docker
-  tags:
-    - install
+# - hosts: all
+#   roles:
+#     - geerlingguy.docker
+#   tags:
+#     - install
 
 - name: Deploy Composes
   hosts: all
