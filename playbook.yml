@@ -1,6 +1,8 @@
 ---
 - name: Install Python Docker
   hosts: all
+  tags:
+    - install
 
   tasks:
     - name: Install Pip3
@@ -17,17 +19,32 @@
 
 - hosts: all
   roles:
-    # Uncomment for docker & docker-compose installation
-    # - geerlingguy.docker
+    - geerlingguy.docker
+  tags:
+    - install
 
 - name: Deploy Composes
   hosts: all
+  tags:
+    - apps
   vars:
-    composes_dir: /tmp/composes
+    composes_dir: /apps
     composes:
       - repo: https://github.com/ondrejsika/docker-compose-app--example
         name: demo-app
-        rev: master # You can try branches: new-branch, hello-branch
+        rev: master
         compose_chain: docker-compose.yml
+      - repo: https://github.com/ondrejsika/docker-compose-app--example
+        name: demo-app-2
+        rev: new-branch
+        dotenv_content: |
+          PORT=8080
+        compose_chain: docker-compose.yml
+      - repo: https://github.com/ondrejsika/docker-compose-app--example
+        name: demo-app-3
+        rev: hello-branch
+        compose_chain: docker-compose.yml
+        dotenv_content: |
+          PORT=8081
   roles:
     - compose
