@@ -6,6 +6,15 @@
     version: "{{ item.rev }}"
   with_items: "{{ composes }}"
 
+- name: Create .env
+  copy:
+    content: "{{ item.get('dotenv_content') }}"
+    dest: "{{ composes_dir }}/{{ item.name }}/.env"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ composes }}"
+
 - name: Ensure docker-compose up
   docker_compose:
     project_src: "{{ composes_dir }}/{{ item.name }}"
