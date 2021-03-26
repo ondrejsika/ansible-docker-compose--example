@@ -1,1 +1,2 @@
-- src: community.docker
+collections:
+  - community.docker
